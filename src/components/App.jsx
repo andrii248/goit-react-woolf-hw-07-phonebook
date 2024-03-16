@@ -27,8 +27,8 @@ export default function App() {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList />
       {isLoading && !error && <Loader />}
+      <ContactList />
     </div>
   );
 }

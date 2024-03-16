@@ -2,7 +2,6 @@ import { deleteContact } from '../../redux/contacts/operations';
 import css from './ContactItem.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/selectors';
-import React from 'react';
 
 const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();

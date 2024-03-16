@@ -3,7 +3,6 @@ import css from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectIsLoading } from '../../redux/selectors';
 import { createContact } from '../../redux/contacts/operations';
-import React from 'react';
 
 const ContactForm = () => {
   const [number, setNumber] = useState('');

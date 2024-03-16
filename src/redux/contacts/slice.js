@@ -12,7 +12,9 @@ const handleFulfilled = state => {
   state.isLoading = false;
 };
 
-const activateLoading = state => (state.isLoading = true);
+const activateLoading = state => {
+  state.isLoading = true;
+};
 
 const handleError = (state, action) => {
   state.isLoading = false;
@@ -26,20 +28,21 @@ export const contactsSlice = createSlice({
     builder
       .addCase(getContacts.pending, activateLoading)
       .addCase(getContacts.rejected, handleError)
-      .addCase(getContacts.fulfilled, (state, action) => {
-        state.items = action.payload;
-        handleFulfilled();
+      .addCase(getContacts.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        state.items = payload;
       })
       .addCase(createContact.pending, activateLoading)
       .addCase(createContact.rejected, handleError)
       .addCase(createContact.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
         state.items.push(payload);
       })
       .addCase(deleteContact.pending, activateLoading)
       .addCase(deleteContact.rejected, handleError)
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
-        state.items.filter(el => el.id !== payload.id);
-        handleFulfilled();
+        handleFulfilled(state);
+        state.items = state.items.filter(el => el.id !== payload.id);
       });
   },
 });
